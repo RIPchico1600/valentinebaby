@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Brush Script MT', cursive;
+            background-color: #e9bfd4;
+            overflow: hidden;
+            position: relative;
+            margin: 0;
+            background: url('https://cdn.vectorstock.com/i/1000v/61/08/valentines-day-red-roses-heart-inverted-isolated-vector-22776108.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .container {
+            margin-top: 60px;
+        }
+        h1 {
+            font-size: 1.5em;
+            color: #15003d;
+            margin: 0;
+            padding: 10px;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .countdown {
+            font-size: 1.2em;
+            color: #d63384;
+            margin-top: 20px;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 1.2em;
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 15px;
+            transition: background-color 0.3s ease;
+        }
+        .yes {
+            background-color: #28a745;
+            color: white;
+        }
+        .yes:hover {
+            background-color: #218838;
+        }
+        .no {
+            background-color: #dc3545;
+            color: white;
+            position: absolute;
+        }
+        .no:hover {
+            background-color: #c82333;
+        }
+        .no:active {
+            transform: scale(0.8);
+        }
+        .hidden {
+            display: none;
+        }
+        @keyframes confetti {
+            0% {transform: translateY(0); opacity: 1;}
+            100% {transform: translateY(100vh); opacity: 0;}
+        }
+        .confetti {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: #ff5c8d;
+            opacity: 0.7;
+            clip-path: polygon(50% 0%, 100% 35%, 82% 100%, 50% 75%, 18% 100%, 0% 35%); /* Heart shape */
+            animation: confetti 3s linear infinite;
+        }
+        @keyframes twinkle {
+            0% {opacity: 0.3;}
+            50% {opacity: 1;}
+            100% {opacity: 0.3;}
+        }
+        .star {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: rgb(102, 11, 129);
+            border-radius: 50%;
+            animation: twinkle 2s infinite;
+        }
+        .gift-box {
+            margin-top: 20px;
+            font-size: 2em;
+            cursor: pointer;
+        }
+        .heart-frame {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            background-color: transparent;
+            clip-path: polygon(50% 0%, 100% 35%, 82% 100%, 50% 75%, 18% 100%, 0% 35%); /* Upside down heart shape */
+            margin: 0 auto;
+            border: 10px solid #ff5c8d;
+            padding: 10px;
+            overflow: hidden;
+        }
+        #image-container {
+            margin-top: 40px;
+            position: relative;
+        }
+        #image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .background-hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: url('https://wallpapers.com/images/hd/heart-of-love-rose-syr960nc3r21k1w8.jpg') repeat;
+            opacity: 0.2;
+        }
+        .teddy-bear {
+            font-size: 1.8em;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .teddy-bear img {
+            width: 160px;
+            margin-right: 50px;
+        }
+        .teddy-bear span {
+            font-size: 1.2em;
+            color: #19fadc;
+        }
+        #message-frame {
+            width: 300px;
+            margin-top: 30px;
+            padding: 10px;
+            background-color: #fff;
+            border: 2px solid #ff5c8d;
+            border-radius: 10px;
+            text-align: center;
+        }
+        #message-frame h3 {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="image-container">
+            <div class="heart-frame">
+                <img src="https://i.imgur.com/Ix70FLS.jpeg" alt="Valentine's Image">
+            </div>
+        </div>
+        <h1>On this special day, my most precious woman in the universe, to the one who was there for me from the start, i just want to take a moment to give you all my thanks and appreciation and love. We went through some hard times, some days were very hard but in the end we were so strong and never let anything separate us and the beautiful bond that we have built throughout our relationship, and i want to let you know that no matter how hard times get, i will always be there with you, because you are my safe place, you hold a very special part of my heart that no one but you has. My love for you only grows from day to day, i fall in love with you everyday. Everything that you behold, you stole my heart, with your inner beauty. The way i see all your features, from your beautiful mesmerizing eyes, to your soft lips, your glowy skin, your eyebrows, your pretty nose, your smile that sends goosebumps down my spine and all of you. I see you as the most perfect woman in my eyes. Only if you saw yourself from my eyes and how beautiful you are. I love you so much my prettiest of all princesses, on this special day, i would love to ask: would you be valentine?</h1>
+        <div class="countdown">Valentine's Day in <span id="timer"></span></div>
+        <div class="buttons">
+            <button class="yes" onclick="acceptLove()">Yes 💖</button>
+            <button class="no" onmouseover="moveNoButton()" onclick="shrinkNoButton()">No 💔</button>
+        </div>
+        <div id="loveMessage" class="hidden">
+            <h2>I love you so much my prettiest valentine EVER 💕</h2>
+            <p>My heart is only yours to keep</p>
+        </div>
+        <div class="teddy-bear" onclick="acceptLove()">
+            <img src="https://img.freepik.com/free-psd/brown-teddy-bear-holding-red-heart-valentine39s-day-gift-love-affection_632498-50678.jpg" alt="Teddy Bear">
+            <span>Click me</span>
+        </div>
+        <div id="giftMessage" class="hidden">
+            <h2>Surprise! 🎉</h2>
+            <p>You're the most amazing person ever! ❤️</p>
+        </div>
+        <div id="message-frame" class="hidden">
+            <h3>Your message goes here!</h3>
+        </div>
+    </div>
+
+    <script>
+        // Countdown timer
+        function updateCountdown() {
+            const valentineDate = new Date('2025-02-14T00:00:00');
+            const now = new Date();
+            const timeDifference = valentineDate - now;
+            
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+            document.getElementById('timer').textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            setTimeout(updateCountdown, 1000);
+        }
+        updateCountdown();
+
+        // Fun animations
+        let heartFrame;  // Variable to store the heart frame element
+
+function acceptLove() {
+    document.querySelector('.container').innerHTML = "<h1>I love you so much my prettiest valentine EVER 💕</h1><p>My heart is only yours to keep</p>";
+    createConfetti();
+    createStars();
+    createHearts();
+
+    // Remove any existing heart frame first (if it exists)
+    if (heartFrame) {
+        heartFrame.remove(); // Remove the previously created heart frame with the image
+    }
+
+    // Add the new heart frame with the image
+    showHeartFrame();
+}
+
+function showHeartFrame() {
+    let frame = document.createElement('div');
+    frame.className = 'heart-frame';
+    
+    // Create the image element
+    let image = document.createElement('img');
+    image.src = "https://i.imgur.com/oy7ItQG.jpeg";
+    image.alt = "Your Picture";
+    
+    // Resize and position the image
+    image.style.width = '80%';  // Adjust width as needed
+    image.style.height = 'auto';  // Keep the aspect ratio intact
+    image.style.position = 'relative';
+    image.style.top = '100px';  // Move image further down (adjust as needed)
+    image.style.transform = 'scale(1.1)';  // Zoom in a bit (adjust as needed)
+    
+    // Add the image to the frame
+    frame.appendChild(image);
+
+    // Add text below the image
+    let text = document.createElement('p');
+    text.textContent = "You're my everything!";
+    text.style.fontSize = '2em';  // Make text bigger (adjust as needed)
+    text.style.color = '#ff5c8d';  // You can change the color if needed
+    frame.appendChild(text);
+
+    // Add frame to body
+    document.body.appendChild(frame);
+
+    // Add the main love message with bigger text
+    let loveMessage = document.createElement('h1');
+    loveMessage.textContent = "I love you so much my prettiest valentine";
+    loveMessage.style.fontSize = '3em';  // Make this text bigger (adjust as needed)
+    loveMessage.style.color = '#ff5c8d';  // You can adjust the color as well
+    loveMessage.style.marginTop = '30px';  // Add some space between the image and the message
+    document.body.appendChild(loveMessage);
+}
+
+
+
+
+
+
+        function moveNoButton() {
+            let button = document.querySelector('.no');
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 50);
+            button.style.left = `${x}px`;
+            button.style.top = `${y}px`;
+        }
+
+        function shrinkNoButton() {
+            let button = document.querySelector('.no');
+            button.style.transform = "scale(0.8)";
+        }
+
+        function createConfetti() {
+            for (let i = 0; i < 100; i++) {
+                let confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.top = Math.random() * window.innerHeight + 'px';
+                document.body.appendChild(confetti);
+            }
+        }
+
+        function createStars() {
+            for (let i = 0; i < 100; i++) {
+                let star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * window.innerWidth + 'px';
+                star.style.top = Math.random() * window.innerHeight + 'px';
+                document.body.appendChild(star);
+            }
+        }
+
+        function createHearts() {
+            for (let i = 0; i < 50; i++) {
+                let heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.style.left = Math.random() * window.innerWidth + 'px';
+                heart.style.top = Math.random() * window.innerHeight + 'px';
+                document.body.appendChild(heart);
+            }
+        }
+    </script>
+</body>
+</html>
